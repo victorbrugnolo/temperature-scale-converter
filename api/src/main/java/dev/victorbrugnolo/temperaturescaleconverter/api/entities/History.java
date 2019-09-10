@@ -23,11 +23,20 @@ public class History {
 
     @Enumerated(value = EnumType.STRING)
     @Column(name = "original_scale_temp")
+    @NotNull
     private TemperatureEnum originalScaleTemp;
 
     @Enumerated(value = EnumType.STRING)
     @Column(name = "convertedTo")
+    @NotNull
     private TemperatureEnum convertedTo;
+
+    public History(@NotNull double originalValue, @NotNull double convertedValue, @NotNull TemperatureEnum originalScaleTemp, @NotNull TemperatureEnum convertedTo) {
+        this.originalValue = originalValue;
+        this.convertedValue = convertedValue;
+        this.originalScaleTemp = originalScaleTemp;
+        this.convertedTo = convertedTo;
+    }
 
     public Integer getId() {
         return id;
