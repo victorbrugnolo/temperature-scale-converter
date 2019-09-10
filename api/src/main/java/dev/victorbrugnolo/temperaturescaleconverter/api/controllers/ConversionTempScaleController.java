@@ -1,5 +1,6 @@
 package dev.victorbrugnolo.temperaturescaleconverter.api.controllers;
 
+import dev.victorbrugnolo.temperaturescaleconverter.api.dtos.ConvertedTemperatureResponse;
 import dev.victorbrugnolo.temperaturescaleconverter.api.enums.TemperatureEnum;
 import dev.victorbrugnolo.temperaturescaleconverter.api.services.ConversionTempScaleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +16,8 @@ public class ConversionTempScaleController {
     ConversionTempScaleService conversionService;
 
     @GetMapping
-    public ResponseEntity<Double> convert(@RequestParam("temperature") double temperature,
-                                          @RequestParam("convertTo") TemperatureEnum convertTo) {
+    public ResponseEntity<ConvertedTemperatureResponse> convert(@RequestParam("temperature") double temperature,
+                                                                @RequestParam("convertTo") TemperatureEnum convertTo) {
         return ResponseEntity.ok(conversionService.convert(temperature, convertTo));
     }
 

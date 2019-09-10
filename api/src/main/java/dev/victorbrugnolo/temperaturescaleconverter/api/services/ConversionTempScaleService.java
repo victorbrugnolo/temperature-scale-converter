@@ -1,5 +1,6 @@
 package dev.victorbrugnolo.temperaturescaleconverter.api.services;
 
+import dev.victorbrugnolo.temperaturescaleconverter.api.dtos.ConvertedTemperatureResponse;
 import dev.victorbrugnolo.temperaturescaleconverter.api.entities.History;
 import dev.victorbrugnolo.temperaturescaleconverter.api.enums.TemperatureEnum;
 import dev.victorbrugnolo.temperaturescaleconverter.api.repositories.HistoryRepository;
@@ -14,20 +15,20 @@ public class ConversionTempScaleService {
     @Autowired
     HistoryRepository historyRepository;
 
-    public Double convert(double temperature, TemperatureEnum convertTo) {
-        double convertedValue = 0D;
+    public ConvertedTemperatureResponse convert(double temperature, TemperatureEnum convertTo) {
+        ConvertedTemperatureResponse convertedValue = new ConvertedTemperatureResponse();
 
         switch (convertTo) {
             case CELSIUS:
-                convertedValue = new Celsius().convert(temperature);
-                historyRepository.save(new History(temperature, convertedValue, TemperatureEnum.FARENHEIT, TemperatureEnum.CELSIUS));
+                convertedValue.setConvertedValue(new Celsius().convert(temperature));
+                historyRepository.save(new History(temperature, convertedValue.getConvertedValue(), TemperatureEnum.FARENHEIT, TemperatureEnum.CELSIUS));
                 return convertedValue;
             case FARENHEIT:
-                convertedValue = new Farenheit().convert(temperature);
-                historyRepository.save(new History(temperature, convertedValue, TemperatureEnum.CELSIUS, TemperatureEnum.FARENHEIT));
+                convertedValue.setConvertedValue(new Farenheit().convert(temperature));
+                historyRepository.save(new History(temperature, convertedValue.getConvertedValue(), TemperatureEnum.CELSIUS, TemperatureEnum.FARENHEIT));
                 return convertedValue ;
             default:
-                return 0D;
+                throw new IllegalArgumentException();
         }
 
     }

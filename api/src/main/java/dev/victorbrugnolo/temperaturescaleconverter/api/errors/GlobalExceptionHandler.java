@@ -17,7 +17,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     @ResponseBody
     public ErrorResponse handleArgumentInvalid(MethodArgumentTypeMismatchException ex) {
         ErrorResponse response = new ErrorResponse();
-        response.setMessage("Invalid parameters");
+        response.setMessage("Invalid field value");
         response.setStatus(HttpStatus.BAD_REQUEST.value());
         response.setField(ex.getParameter().getParameterName());
         return response;
