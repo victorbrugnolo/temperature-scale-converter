@@ -31,6 +31,9 @@ public class History {
     @NotNull
     private TemperatureEnum convertedTo;
 
+    public History() {
+    }
+
     public History(@NotNull double originalValue, @NotNull double convertedValue, @NotNull TemperatureEnum originalScaleTemp, @NotNull TemperatureEnum convertedTo) {
         this.originalValue = originalValue;
         this.convertedValue = convertedValue;
