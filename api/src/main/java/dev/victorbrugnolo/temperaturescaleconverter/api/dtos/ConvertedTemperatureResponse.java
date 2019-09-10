@@ -11,4 +11,5 @@ public class ConvertedTemperatureResponse {
     public void setConvertedValue(double convertedValue) {
         this.convertedValue = convertedValue;
     }
+
 }
