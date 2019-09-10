@@ -21,7 +21,7 @@ import static org.junit.Assert.assertNotNull;
 @SpringBootTest
 @ActiveProfiles("test")
 @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
-public class HistoryRepositoryTest {
+public class HistoryRepositoryTests {
 
     private static final double ORIGINAL_VALUE = 50;
     private static final double CONVERTED_VALUE = 122;
