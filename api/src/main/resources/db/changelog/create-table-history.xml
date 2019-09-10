@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.8"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.8
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.8.xsd">
+    <changeSet id="create-table-tarifa" author="victorbrugnolo">
+        <preConditions>
+            <not>
+                <tableExists tableName="history" schemaName="temperature_scale_converter" />
+            </not>
+        </preConditions>
+        <createTable tableName="history">
+            <column name="id" type="serial">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="original_value" type="integer">
+                <constraints nullable="false"/>
+            </column>
+            <column name="converted_value" type="integer">
+                <constraints nullable="false"/>
+            </column>
+            <column name="original_scale_temp" type="varchar(50)">
+                <constraints nullable="false" />
+            </column>
+            <column name="converted_to" type="varchar(50)">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>
