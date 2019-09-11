@@ -1,0 +1,36 @@
+version: "3.3"
+services:
+  postgres:
+    restart: always
+    image: postgres:latest
+    container_name: postgres
+    environment:
+      POSTGRES_DB: temperature_scale_converter
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+    restart: always    
+    ports:
+      - "5432:5432"
+    networks:
+      - temp-scale-converter-network  
+  app:
+    restart: always
+    build: ./api
+    working_dir: /api
+    environment: 
+      SPRING_BOOT_ENVIRONMENT: dev
+    volumes: 
+      - ./api:/api    
+      - ~/.m2:/root/m2
+    ports:
+      - "8090:8090"
+    command: mvn clean spring-boot:run  
+    depends_on:
+      - postgres
+    links: 
+      - postgres 
+    networks:
+      - temp-scale-converter-network  
+networks:
+    temp-scale-converter-network:
+        driver: bridge
