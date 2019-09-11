@@ -1,4 +1,4 @@
-Para executar os testes: 
+Para executar os testes:
   Pré requisitos: 
     openjdk 8
     maven
